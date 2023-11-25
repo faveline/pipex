@@ -6,13 +6,13 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:22:16 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/25 15:28:04 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:22:44 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static int	ft_Creating_cmd(char *argv, char *cmd[])
+static int	ft_creating_cmd(char *argv, char *cmd[])
 {
 	char	*str_trim;
 	char	*str_join;

@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:09:42 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/25 15:21:25 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:23:07 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 5)
 		return (ft_error_pipex(-1), 1);
-	if (ft_creating_t_Argv(argv, &var) < 0)
+	if (ft_creating_t_argv(argv, &var) < 0)
 		return (ft_error_pipex(-2), 1);
 	if (ft_piepe_fork(&var, &pipe) < 0)
 		return (ft_error_pipex(-3), 1);
