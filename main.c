@@ -6,13 +6,13 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:09:42 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/25 16:23:07 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/25 18:43:01 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char *argv[])
+int	main(int argc, char *argv[], char *env[])
 {
 	t_argv	var;
 	t_pipe	pipex;
@@ -21,7 +21,7 @@ int	main(int argc, char *argv[])
 		return (ft_error_pipex(-1), 1);
 	if (ft_creating_t_argv(argv, &var) < 0)
 		return (ft_error_pipex(-2), 1);
-	if (ft_piepe_fork(&var, &pipe) < 0)
+	if (ft_pipe_fork(&var, &pipex, env) < 0)
 		return (ft_error_pipex(-3), 1);
 
 	ft_exterminate(&var);
