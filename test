@@ -1,10 +1,1 @@
-total 72
--rwxr-xr-x 1 faveline 2023_mulhouse 38552 Nov 25 18:31 a.out
--rw-r--r-- 1 faveline 2023_mulhouse  1682 Nov 25 16:45 ft_creating_t_argv.c
--rw-r--r-- 1 faveline 2023_mulhouse  2791 Nov 25 18:31 ft_pipe_fork.c
--rw-r--r-- 1 faveline 2023_mulhouse  1396 Nov 25 16:31 ft_utils.c
--rw-r--r-- 1 faveline 2023_mulhouse    38 Nov 25 15:57 infile
-drwxr-xr-x 2 faveline 2023_mulhouse  4096 Nov 25 15:08 libft
--rw-r--r-- 1 faveline 2023_mulhouse  1212 Nov 25 16:24 main.c
--rw-r--r-- 1 faveline 2023_mulhouse  1412 Nov 25 16:49 pipex.h
--rw-r--r-- 1 faveline 2023_mulhouse     2 Nov 25 16:46 test
+4
