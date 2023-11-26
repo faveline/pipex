@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:14:39 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/26 11:30:43 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/26 13:49:19 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	ft_child1(t_argv *var, t_pipe *pipex, char **envp)
 {
+	if (access(var->cmd1[0], F_OK | X_OK) < 0)
+		return (perror("command not found\n"), -1);
 	close(pipex->fd[0]);
 	if (dup2(var->infile, 0) < 0)
 		return (perror("error on dup2 child1 fd0\n"), -1);
@@ -27,6 +29,8 @@ static int	ft_child1(t_argv *var, t_pipe *pipex, char **envp)
 
 static int	ft_child2(t_argv *var, t_pipe *pipex, char **envp)
 {
+	if (access(var->cmd2[0], F_OK | X_OK) < 0)
+		return (perror("command not found\n"), -1);
 	if (dup2(pipex->fd[0], 0) < 0)
 		return (perror("error on dup2 child2 fd0\n"), -1);
 	if (dup2(var->outfile, 1) < 0)
@@ -45,19 +49,19 @@ int	ft_pipe_fork(t_argv *var, t_pipe *pipex, char **env)
 	pipex->child1 = fork();
 	if (pipex->child1 < 0)
 		return (perror("error creating child1\n"), -1);
-	else if (pipex->child1 > 0) //parent
+	else if (pipex->child1 > 0)
 	{
 		waitpid(pipex->child1, NULL, 0);
 		pipex->child2 = fork();
 		if (pipex->child2 < 0)
 			return (perror("error creating child2\n"), -1);
-		else if (pipex->child2 == 0) //child2
+		else if (pipex->child2 == 0)
 		{
 			if (ft_child2(var, pipex, env) < 0)
 				return (-1);
 		}
 	}
-	else //child1
+	else
 	{
 		if (ft_child1(var, pipex, env) < 0)
 			return (-1);

@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:22:16 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/26 11:29:23 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/26 13:49:29 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,5 @@ int	ft_creating_t_argv(char *argv[], t_argv *var)
 		return (ft_exterminate(var), -1);
 	if (ft_creating_cmd(argv[3], &var->cmd2) < 0)
 		return (ft_exterminate(var), -1);
-	if (access(var->cmd1[0], X_OK) < 0 || access(var->cmd2[0], X_OK) < 0)
-		return (perror("problem with access\n"), -1);
 	return (1);
 }
