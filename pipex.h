@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:47:47 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/26 13:47:48 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/26 18:05:03 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int		ft_creating_t_argv(char *argv[], t_argv *var);
 void	ft_error_pipex(int flag);
 void	ft_delete(char *tab[]);
 void	ft_exterminate(t_argv *var);
-int		ft_pipe_fork(t_argv *var, t_pipe *pipe, char **env);
+int		ft_pipe_fork(t_argv *var, t_pipe *pipe, char **env, char *argv[]);
 
 #endif

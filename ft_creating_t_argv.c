@@ -6,11 +6,58 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:22:16 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/26 13:49:29 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/26 18:06:16 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+static char	**ft_check_cmd2(char **str)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+		{
+			if (str[i][j] == '|')
+				str[i][j] = ' ';
+			j++;
+		}
+		i++;
+	}
+	return (str);
+}
+
+static char	*ft_check_cmd1(char *str)
+{
+	int		i;
+	int		flag;
+	int		i_c;
+
+	i_c = 0;
+	flag = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == 34 || str[i] == 39)
+		{
+			if (i_c == 0)
+				str[i] = ' ';
+			flag++;
+			i_c = i;
+		}
+		if (flag > 0 && i_c != i && str[i] == ' ')
+			str[i] = '|';
+		i++;
+	}
+	if (i_c > 0)
+		str[i_c] = ' ';
+	return (str);
+}
 
 static int	ft_creating_cmd(char *argv, char **cmd[])
 {
@@ -20,14 +67,24 @@ static int	ft_creating_cmd(char *argv, char **cmd[])
 	str_trim = ft_strtrim(argv, " ");
 	if (str_trim == NULL)
 		return (-1);
-	str_join = ft_strjoin("/bin/", str_trim);
+	str_trim = ft_check_cmd1(str_trim);
+	if (access(str_trim, F_OK) < 0)
+		*cmd = ft_split(str_trim, ' ');
+	else
+		*cmd = ft_split(str_trim, '\0');
 	free(str_trim);
-	if (str_join == NULL)
-		return (-1);
-	*cmd = ft_split(str_join, ' ');
-	free(str_join);
 	if (*cmd == NULL)
 		return (-1);
+	*cmd = ft_check_cmd2(*cmd);
+	if (access(*cmd[0], F_OK) == 0)
+		return (1);
+	else
+	{
+		str_join = ft_strjoin("/bin/", *cmd[0]);
+		free(*cmd[0]);
+		*cmd[0] = ft_strjoin(str_join, "");
+		free(str_join);
+	}
 	return (1);
 }
 
