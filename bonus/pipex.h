@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 13:47:47 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/27 14:40:22 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:09:16 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct s_argv
 
 typedef struct s_pipe
 {
-	int		fd[2];
+	int		fd1[2];
+	int		fd2[2];
 	pid_t	child1;
 	pid_t	child2;
 	pid_t	*childx;
