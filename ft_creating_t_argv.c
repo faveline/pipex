@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:22:16 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/26 18:06:16 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:34:28 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,22 @@ static char	**ft_check_cmd2(char **str)
 	return (str);
 }
 
+static char	*ft_move_if_34(char *str, int i)
+{
+	if (str[i] == 92 && str[i + 1] == 34)
+	{
+		str[i] = 34;
+		i++;
+		while (str[i + 1] != '\0')
+		{
+			str[i] = str[i + 1];
+			i++;
+		}
+		str[i] = '\0';
+	}
+	return (str);
+}
+
 static char	*ft_check_cmd1(char *str)
 {
 	int		i;
@@ -50,6 +66,7 @@ static char	*ft_check_cmd1(char *str)
 			flag++;
 			i_c = i;
 		}
+		str = ft_move_if_34(str, i);
 		if (flag > 0 && i_c != i && str[i] == ' ')
 			str[i] = '|';
 		i++;
