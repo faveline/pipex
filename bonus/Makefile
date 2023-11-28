@@ -3,6 +3,8 @@ NAME = pipex
 SRCS = ft_creating_t_argv.c		\
 	   ft_pipe_fork.c			\
 	   ft_utils.c				\
+	   ft_utils_bonus.c			\
+	   ft_utils_bonus2.c		\
 	   main.c
 
 CC = gcc

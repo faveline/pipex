@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:22:16 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/27 15:01:28 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/28 11:35:17 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int	ft_creating_t_argv(int argc, char *argv[], t_argv *var)
 	if (var->cmd == NULL)
 		return (ft_exterminate(var), -1);
 	while (argv[i + 1])
-
 	{
 		if (ft_creating_cmd(argv[i], &var->cmd[i - 2 - var->flag]) < 0)
 			return (ft_exterminate(var), -1);
