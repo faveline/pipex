@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:40:56 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/28 12:41:17 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:11:05 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,47 +56,5 @@ int	ft_fork2(t_argv *var, t_pipe *pipex, char **envp, int i)
 	}
 	else if (pipex->child2 > 0)
 		ft_close_parent(pipex, i, 1);
-	return (1);
-}
-
-static int	ft_creat_here_doc(t_argv *var)
-{
-	int		fd;
-	char	*next_line;
-
-	fd = open(here_doc, O_RDWR | O_CREAT | O_TRUNC, 00777);
-	ft_printf("pipe heredoc> ");
-	next_line = get_next_line(0);
-	if (next_line == NULL)
-		return (-1);
-	while (ft_strncmp(next_line, var->lim, ft_strlen(var->lim)) != 0)
-	{
-		ft_putstr_fd(next_line, fd);
-		free(next_line);
-		ft_printf("pipe heredoc> ");	
-		next_line = get_next_line(0);
-		if (next_line == NULL)
-			return (-1);
-	}
-	return (fd);
-}
-
-int	ft_here_doc(t_argv *var, t_pipe *pipex, char **envp)
-{
-	int	fd_here_doc;
-	
-	fd_here_doc = ft_creat_here_doc(t_argv *var);
-	if (here_doc < 0)
-		return (-1);
-	if (access(var->cmd[0][0], F_OK | X_OK) < 0)
-		return (ft_exterminate(var), perror("command not found"), -1);
-	close(pipex->fd1[0]);
-	if (dup2(fd_here_doc, 0) < 0)
-		return (perror("error on dup2 child1 fd0"), -1);
-	if (dup2(pipex->fd1[1], 1) < 0)
-		return (perror("error on dup2 child1 fd1"), -1);
-	close(pipex->fd1[1]);
-	if (execve(var->cmd[0][0], var->cmd[0], envp) < 0)
-		return (perror("error on cmd1"), -1);
 	return (1);
 }

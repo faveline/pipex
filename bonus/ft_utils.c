@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:28:24 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/27 15:07:20 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:47:40 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,6 @@ void	ft_exterminate(t_argv *var)
 	}
 	if (var->cmd)
 		free(var->cmd);
+	if (var->flag == 1)
+		unlink("/tmp/here_doc");
 }

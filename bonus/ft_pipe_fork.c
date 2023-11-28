@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:14:39 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/28 12:20:39 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:36:24 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_child1(t_argv *var, t_pipe *pipex, char **envp)
 	if (var->flag == 0)
 	{
 		if (access(var->cmd[0][0], F_OK | X_OK) < 0)
-			return (ft_exterminate(var), perror("command not found"), -1);
+			return (perror("command not found"), -1);
 		close(pipex->fd1[0]);
 		if (dup2(var->infile, 0) < 0)
 			return (perror("error on dup2 child1 fd0"), -1);
@@ -30,7 +30,7 @@ static int	ft_child1(t_argv *var, t_pipe *pipex, char **envp)
 	else
 	{
 		if (ft_here_doc(var, pipex, envp) < 0)
-			return (-1);		
+			return (-1);
 	}
 	return (1);
 }

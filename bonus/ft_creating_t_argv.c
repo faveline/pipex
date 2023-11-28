@@ -6,7 +6,7 @@
 /*   By: faveline <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:22:16 by faveline          #+#    #+#             */
-/*   Updated: 2023/11/28 11:35:17 by faveline         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:27:13 by faveline         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,19 +98,21 @@ int	ft_creating_t_argv(int argc, char *argv[], t_argv *var)
 		if (var->infile < 0)
 			return (-1);
 	}
-	var->outfile = open(argv[argc - 1], O_RDWR | O_TRUNC | O_CREAT, 00777);
+	if (var->flag == 0)
+		var->outfile = open(argv[argc - 1], O_RDWR | O_TRUNC | O_CREAT, 00777);
+	if (var->flag == 1)
+		var->outfile = open(argv[argc - 1], O_RDWR | O_APPEND | O_CREAT, 00777);
 	if (var->outfile < 0)
 		return (ft_exterminate(var), -1);
-	i = 2 + var->flag;
+	i = 1 + var->flag;
 	var->nbr_cmd = argc - 3 - var->flag;
 	var->cmd = (char ***)malloc(var->nbr_cmd * sizeof(char **));
 	if (var->cmd == NULL)
 		return (ft_exterminate(var), -1);
-	while (argv[i + 1])
+	while (i++, argv[i + 1])
 	{
 		if (ft_creating_cmd(argv[i], &var->cmd[i - 2 - var->flag]) < 0)
 			return (ft_exterminate(var), -1);
-		i++;
 	}
 	return (1);
 }

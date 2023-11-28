@@ -5,6 +5,7 @@ SRCS = ft_creating_t_argv.c		\
 	   ft_utils.c				\
 	   ft_utils_bonus.c			\
 	   ft_utils_bonus2.c		\
+	   ft_utils_bonus3.c		\
 	   main.c
 
 CC = gcc
